@@ -2,9 +2,13 @@ package aaditya.dev.cafeapp.services.v2;
 
 import aaditya.dev.cafeapp.web.model.BeerDto;
 import aaditya.dev.cafeapp.web.model.v2.BeerDtoV2;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+@Slf4j
+@Service
 public class BeerServiceV2Impl implements BeerServiceV2 {
     @Override
     public BeerDtoV2 getBeerById(UUID beerId) {
@@ -12,12 +16,12 @@ public class BeerServiceV2Impl implements BeerServiceV2 {
     }
 
     @Override
-    public BeerDtoV2 saveNewBeer(BeerDto beerDto) {
+    public BeerDtoV2 saveNewBeer(BeerDtoV2 beerDtoV2) {
         return null;
     }
 
     @Override
-    public void updateBeer(UUID beerId, BeerDto beerDto) {
+    public void updateBeer(UUID beerId, BeerDtoV2 beerDtoV2) {
 
     }
 
