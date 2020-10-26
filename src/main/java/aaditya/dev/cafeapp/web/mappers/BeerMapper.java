@@ -4,7 +4,7 @@ import aaditya.dev.cafeapp.domain.Beer;
 import aaditya.dev.cafeapp.web.model.BeerDto;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(uses = {DateMapper.class})
 public interface BeerMapper {
 
     BeerDto beerToBeerDto(Beer beer);

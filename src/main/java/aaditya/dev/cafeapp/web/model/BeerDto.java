@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Data
@@ -16,4 +17,9 @@ public class BeerDto {
     private String beerName;
     private String beerStyle;
     private Long upc;
+
+    // java.time.OffsetDateTime is a good option for
+    // being used for public APIs
+    private OffsetDateTime createDate;
+    private OffsetDateTime lastUpdateDate;
 }
