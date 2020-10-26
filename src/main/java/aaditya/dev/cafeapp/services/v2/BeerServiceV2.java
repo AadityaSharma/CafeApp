@@ -1,6 +1,5 @@
 package aaditya.dev.cafeapp.services.v2;
 
-import aaditya.dev.cafeapp.web.model.BeerDto;
 import aaditya.dev.cafeapp.web.model.v2.BeerDtoV2;
 
 import java.util.UUID;
