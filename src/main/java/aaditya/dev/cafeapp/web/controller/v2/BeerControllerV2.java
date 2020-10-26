@@ -2,6 +2,9 @@ package aaditya.dev.cafeapp.web.controller.v2;
 
 import aaditya.dev.cafeapp.services.v2.BeerServiceV2;
 import aaditya.dev.cafeapp.web.model.v2.BeerDtoV2;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +15,13 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
+@Slf4j
 @Validated
 @RequestMapping("/api/v2/beer")
 @RestController
+@RequiredArgsConstructor
 public class BeerControllerV2 {
     private final BeerServiceV2 beerServiceV2;
-
-    public BeerControllerV2(BeerServiceV2 beerServiceV2) {
-        this.beerServiceV2 = beerServiceV2;
-    }
 
     @GetMapping("/{beerId}")
     public ResponseEntity<BeerDtoV2> getBeer(@NotNull @PathVariable("beerId") UUID beerId) {
@@ -30,8 +31,11 @@ public class BeerControllerV2 {
 
     @PostMapping // POST - create new beer
     public ResponseEntity handlePost(@Valid @NotNull @RequestBody BeerDtoV2 beerDto) {
-        BeerDtoV2 saveDto = beerServiceV2.saveNewBeer(beerDto);
-        HttpHeaders headers = new HttpHeaders();
+
+        log.debug("in handle post...");
+
+        val saveDto = beerServiceV2.saveNewBeer(beerDto);
+        val headers = new HttpHeaders();
         // todo: add hostname to url
         headers.add("Location", "/api/v1/beer/" + saveDto.getId().toString());
         return new ResponseEntity(headers, HttpStatus.CREATED);
